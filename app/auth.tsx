@@ -11,7 +11,7 @@ import {
     ActivityIndicator,
     Alert,
 } from 'react-native';
-import { BookOpen, Mail, Lock, User, Eye, EyeOff, GraduationCap, Users, School, ShieldAlert, Globe } from 'lucide-react-native';
+import { BookOpen, Mail, Lock, User, Eye, EyeOff, GraduationCap, Users, School, Globe } from 'lucide-react-native';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -27,7 +27,6 @@ const ROLES: { id: Role; icon: any; labelKey: string }[] = [
 
 export default function AuthScreen() {
     const [isLogin, setIsLogin] = useState(true);
-    const [isAdminLogin, setIsAdminLogin] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [fullName, setFullName] = useState('');
@@ -45,32 +44,17 @@ export default function AuthScreen() {
             Alert.alert(t('error'), t('fillAllFields'));
             return;
         }
-        if (!isLogin && !fullName && !isAdminLogin) {
+        if (!isLogin && !fullName) {
             Alert.alert(t('error'), t('fillAllFields'));
             return;
         }
 
         setLoading(true);
         try {
-            if (isLogin || isAdminLogin) {
+            if (isLogin) {
                 const { error } = await signIn(email, password);
                 if (error) {
                     Alert.alert(t('error'), error.message);
-                } else if (isAdminLogin) {
-                    // Verify Admin Role
-                    const { data: { session } } = await supabase.auth.getSession();
-                    if (session?.user) {
-                        const { data: profile } = await supabase
-                            .from('profiles')
-                            .select('role')
-                            .eq('id', session.user.id)
-                            .single();
-
-                        if (profile?.role !== 'admin') {
-                            await signOut();
-                            Alert.alert(t('accessDenied'), t('onlyAdminAccess'));
-                        }
-                    }
                 }
             } else {
                 const { error } = await signUp(email, password, fullName, selectedRole);
@@ -88,10 +72,7 @@ export default function AuthScreen() {
         }
     };
 
-    const toggleAdminMode = () => {
-        setIsAdminLogin(!isAdminLogin);
-        setIsLogin(true); // Always force login mode for admin
-    };
+
 
     return (
         <KeyboardAvoidingView
@@ -122,32 +103,22 @@ export default function AuthScreen() {
                 {/* Logo */}
                 <View style={styles.logoContainer}>
                     <View style={styles.logoCircle}>
-                        {isAdminLogin ? (
-                            <ShieldAlert color="#FFF" size={32} />
-                        ) : (
-                            <BookOpen color="#FFF" size={32} />
-                        )}
+                        <BookOpen color="#FFF" size={32} />
                     </View>
-                    <Text style={styles.appName}>
-                        {isAdminLogin ? 'EduApp Admin' : 'EduApp'}
-                    </Text>
+                    <Text style={styles.appName}>EduApp</Text>
                     <Text style={styles.appTagline}>
-                        {isAdminLogin
-                            ? t('adminPanel')
-                            : (isLogin ? t('welcomeBack') : t('createAccount'))}
+                        {isLogin ? t('welcomeBack') : t('createAccount')}
                     </Text>
                 </View>
 
                 {/* Form */}
                 <View style={styles.formCard}>
                     <Text style={styles.formTitle}>
-                        {isAdminLogin
-                            ? t('adminLogin')
-                            : (isLogin ? t('signIn') : t('signUp'))}
+                        {isLogin ? t('signIn') : t('signUp')}
                     </Text>
 
-                    {/* Role Selection - only for registration and NOT admin */}
-                    {!isLogin && !isAdminLogin && (
+                    {/* Role Selection - only for registration */}
+                    {!isLogin && (
                         <View style={styles.roleSection}>
                             <Text style={styles.roleLabel}>{t('selectRole')}</Text>
                             <View style={styles.roleContainer}>
@@ -183,7 +154,7 @@ export default function AuthScreen() {
                         </View>
                     )}
 
-                    {!isLogin && !isAdminLogin && (
+                    {!isLogin && (
                         <View style={styles.inputContainer}>
                             <User color={colors.textSecondary} size={18} style={styles.inputIcon} />
                             <TextInput
@@ -242,41 +213,29 @@ export default function AuthScreen() {
                             <ActivityIndicator color="#FFF" />
                         ) : (
                             <Text style={styles.submitButtonText}>
-                                {isAdminLogin
-                                    ? t('signIn')
-                                    : (isLogin ? t('signIn') : t('signUp'))}
+                                {isLogin ? t('signIn') : t('signUp')}
                             </Text>
                         )}
                     </TouchableOpacity>
 
-                    {!isAdminLogin && (
-                        <TouchableOpacity
-                            onPress={() => {
-                                setIsLogin(!isLogin);
-                                setFullName('');
-                                setSelectedRole('student');
-                            }}
-                            style={styles.switchButton}
-                        >
-                            <Text style={styles.switchText}>
-                                {isLogin ? t('noAccount') : t('hasAccount')}
-                                <Text style={styles.switchTextBold}>
-                                    {isLogin ? t('signUp') : t('signIn')}
-                                </Text>
+                    <TouchableOpacity
+                        onPress={() => {
+                            setIsLogin(!isLogin);
+                            setFullName('');
+                            setSelectedRole('student');
+                        }}
+                        style={styles.switchButton}
+                    >
+                        <Text style={styles.switchText}>
+                            {isLogin ? t('noAccount') : t('hasAccount')}
+                            <Text style={styles.switchTextBold}>
+                                {isLogin ? t('signUp') : t('signIn')}
                             </Text>
-                        </TouchableOpacity>
-                    )}
+                        </Text>
+                    </TouchableOpacity>
                 </View>
 
-                {/* Admin Toggle */}
-                <TouchableOpacity
-                    onPress={toggleAdminMode}
-                    style={styles.adminToggle}
-                >
-                    <Text style={styles.adminToggleText}>
-                        {isAdminLogin ? t('loginAsUser') : t('loginAsAdmin')}
-                    </Text>
-                </TouchableOpacity>
+
 
             </ScrollView>
         </KeyboardAvoidingView>
@@ -464,14 +423,5 @@ const makeStyles = (colors: any) => StyleSheet.create({
         color: colors.tint,
         fontWeight: '600',
     },
-    adminToggle: {
-        marginTop: 24,
-        alignItems: 'center',
-        padding: 10,
-    },
-    adminToggleText: {
-        fontSize: 13,
-        color: colors.textSecondary,
-        textDecorationLine: 'underline',
-    },
+
 });
