@@ -4,7 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ProgressProvider } from "@/contexts/ProgressContext";
-import { LanguageProvider } from "@/contexts/LanguageContext";
+import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
 import { ThemeProvider, useTheme } from "@/contexts/ThemeContext";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 
@@ -38,6 +38,7 @@ function AuthGate({ children }: { children: React.ReactNode }) {
 
 function RootLayoutNav() {
     const { colors } = useTheme();
+    const { t } = useLanguage();
 
     return (
         <AuthGate>
@@ -56,24 +57,24 @@ function RootLayoutNav() {
                     name="course/[courseId]"
                     options={{
                         headerShown: true,
-                        headerTitle: "Course Details",
-                        headerBackTitle: "Back",
+                        headerTitle: t('courseDetails'),
+                        headerBackTitle: t('back'),
                     }}
                 />
                 <Stack.Screen
                     name="lesson/[lessonId]"
                     options={{
                         headerShown: true,
-                        headerTitle: "Lesson",
-                        headerBackTitle: "Back",
+                        headerTitle: t('lesson'),
+                        headerBackTitle: t('back'),
                     }}
                 />
                 <Stack.Screen
                     name="quiz/[lessonId]"
                     options={{
                         headerShown: true,
-                        headerTitle: "Quiz",
-                        headerBackTitle: "Back",
+                        headerTitle: t('quiz'),
+                        headerBackTitle: t('back'),
                         presentation: "modal",
                     }}
                 />
@@ -81,8 +82,8 @@ function RootLayoutNav() {
                     name="student/[id]"
                     options={{
                         headerShown: true,
-                        headerTitle: "Student Details",
-                        headerBackTitle: "Back",
+                        headerTitle: t('studentDetails'),
+                        headerBackTitle: t('back'),
                     }}
                 />
             </Stack>

@@ -91,16 +91,7 @@ export default function StudentDetailScreen() {
 
     return (
         <View style={styles.container}>
-            <Stack.Screen
-                options={{
-                    title: t('studentDetails'),
-                    headerLeft: () => (
-                        <TouchableOpacity onPress={() => router.back()} style={{ marginRight: 10 }}>
-                            <ChevronLeft color={colors.text} size={24} />
-                        </TouchableOpacity>
-                    ),
-                }}
-            />
+
 
             <ScrollView contentContainerStyle={styles.scrollContent}>
                 {/* Header */}
