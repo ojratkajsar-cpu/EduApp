@@ -1,0 +1,38 @@
+export default {
+    light: {
+        text: '#1A1A2E',
+        textSecondary: '#6B7280',
+        background: '#F8FAFC',
+        card: '#FFFFFF',
+        tint: '#0EA5E9',
+        accent: '#F59E0B',
+        success: '#10B981',
+        error: '#EF4444',
+        border: '#E5E7EB',
+        tabIconDefault: '#9CA3AF',
+        tabIconSelected: '#0EA5E9',
+    },
+    dark: {
+        text: '#F8FAFC',
+        textSecondary: '#9CA3AF',
+        background: '#0F172A',
+        card: '#1E293B',
+        tint: '#38BDF8',
+        accent: '#FBBF24',
+        success: '#34D399',
+        error: '#F87171',
+        border: '#334155',
+        tabIconDefault: '#64748B',
+        tabIconSelected: '#38BDF8',
+    },
+    categories: {
+        mathematics: '#8B5CF6',
+        physics: '#06B6D4',
+        languages: '#F97316',
+    },
+    levels: {
+        beginner: '#10B981',
+        intermediate: '#F59E0B',
+        advanced: '#EF4444',
+    },
+};
