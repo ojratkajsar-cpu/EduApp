@@ -292,6 +292,9 @@ const makeStyles = (colors: any) => StyleSheet.create({
         flexGrow: 1,
         justifyContent: 'center',
         padding: 24,
+        width: '100%',
+        maxWidth: 400,
+        alignSelf: 'center',
     },
     languageContainer: {
         position: 'absolute',
