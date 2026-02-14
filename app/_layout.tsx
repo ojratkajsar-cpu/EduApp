@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack, useRouter, useSegments } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
+import { Platform, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ProgressProvider } from "@/contexts/ProgressContext";
 import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
@@ -92,6 +93,8 @@ function RootLayoutNav() {
 }
 
 export default function RootLayout() {
+    const isWeb = Platform.OS === 'web';
+
     useEffect(() => {
         SplashScreen.hideAsync();
     }, []);
@@ -103,7 +106,23 @@ export default function RootLayout() {
                     <ThemeProvider>
                         <AuthProvider>
                             <ProgressProvider>
-                                <RootLayoutNav />
+                                {isWeb ? (
+                                    <View style={{
+                                        flex: 1,
+                                        alignItems: 'center',
+                                        backgroundColor: '#0a0a1a',
+                                    }}>
+                                        <View style={{
+                                            flex: 1,
+                                            width: '100%',
+                                            maxWidth: 480,
+                                        }}>
+                                            <RootLayoutNav />
+                                        </View>
+                                    </View>
+                                ) : (
+                                    <RootLayoutNav />
+                                )}
                             </ProgressProvider>
                         </AuthProvider>
                     </ThemeProvider>
