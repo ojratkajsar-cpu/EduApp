@@ -56,10 +56,10 @@ export const courses: Course[] = [
         title: 'course-lang-2-title',
         description: 'course-lang-2-desc',
         category: 'languages',
-        thumbnailUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=300&fit=crop',
-        lessonsCount: 3,
-        duration: '1h 30m',
         level: 'intermediate',
+        lessonsCount: 3,
+        duration: '40 min',
+        thumbnailUrl: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=400&h=300&fit=crop',
     },
 ];
 
@@ -93,9 +93,9 @@ export const lessons: Lesson[] = [
 
 
     // Business English
-    { id: 'lang-2-1', courseId: 'lang-2', title: 'lesson-lang-2-1-title', description: 'lesson-lang-2-1-desc', videoId: 'dQw4w9WgXcQ', duration: '14:00', order: 1 },
-    { id: 'lang-2-2', courseId: 'lang-2', title: 'lesson-lang-2-2-title', description: 'lesson-lang-2-2-desc', videoId: 'dQw4w9WgXcQ', duration: '12:45', order: 2 },
-    { id: 'lang-2-3', courseId: 'lang-2', title: 'lesson-lang-2-3-title', description: 'lesson-lang-2-3-desc', videoId: 'dQw4w9WgXcQ', duration: '16:30', order: 3 },
+    { id: 'lang-2-1', courseId: 'lang-2', title: 'lesson-lang-2-1-title', description: 'lesson-lang-2-1-desc', videoId: 'TyOSlpt7jUQ', duration: '14:00', order: 1 },
+    { id: 'lang-2-2', courseId: 'lang-2', title: 'lesson-lang-2-2-title', description: 'lesson-lang-2-2-desc', videoId: 'TyOSlpt7jUQ', duration: '13:00', order: 2 },
+    { id: 'lang-2-3', courseId: 'lang-2', title: 'lesson-lang-2-3-title', description: 'lesson-lang-2-3-desc', videoId: 'TyOSlpt7jUQ', duration: '13:00', order: 3 },
 ];
 
 export const quizzes: Quiz[] = [
@@ -122,9 +122,9 @@ export const quizzes: Quiz[] = [
     { id: 'quiz-lang-1-3', lessonId: 'lang-1-3', question: 'quiz-lang-1-3-q', options: ['quiz-lang-1-3-o0', 'quiz-lang-1-3-o1', 'quiz-lang-1-3-o2', 'quiz-lang-1-3-o3'], correctAnswerIndex: 0 },
 
 
-    { id: 'quiz-lang-2-1', lessonId: 'lang-2-1', question: 'quiz-lang-2-1-q', options: ['quiz-lang-2-1-o0', 'quiz-lang-2-1-o1', 'quiz-lang-2-1-o2', 'quiz-lang-2-1-o3'], correctAnswerIndex: 2 },
-    { id: 'quiz-lang-2-2', lessonId: 'lang-2-2', question: 'quiz-lang-2-2-q', options: ['quiz-lang-2-2-o0', 'quiz-lang-2-2-o1', 'quiz-lang-2-2-o2', 'quiz-lang-2-2-o3'], correctAnswerIndex: 1 },
-    { id: 'quiz-lang-2-3', lessonId: 'lang-2-3', question: 'quiz-lang-2-3-q', options: ['quiz-lang-2-3-o0', 'quiz-lang-2-3-o1', 'quiz-lang-2-3-o2', 'quiz-lang-2-3-o3'], correctAnswerIndex: 1 },
+    { id: 'quiz-lang-2-1', lessonId: 'lang-2-1', question: 'quiz-lang-2-1-q', options: ['quiz-lang-2-1-o0', 'quiz-lang-2-1-o1', 'quiz-lang-2-1-o2', 'quiz-lang-2-1-o3'], correctAnswerIndex: 1 },
+    { id: 'quiz-lang-2-2', lessonId: 'lang-2-2', question: 'quiz-lang-2-2-q', options: ['quiz-lang-2-2-o0', 'quiz-lang-2-2-o1', 'quiz-lang-2-2-o2', 'quiz-lang-2-2-o3'], correctAnswerIndex: 2 },
+    { id: 'quiz-lang-2-3', lessonId: 'lang-2-3', question: 'quiz-lang-2-3-q', options: ['quiz-lang-2-3-o0', 'quiz-lang-2-3-o1', 'quiz-lang-2-3-o2', 'quiz-lang-2-3-o3'], correctAnswerIndex: 0 },
 ];
 
 export const getLessonsByCourse = (courseId: string): Lesson[] => {
