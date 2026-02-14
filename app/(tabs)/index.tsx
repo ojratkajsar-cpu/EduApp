@@ -152,26 +152,22 @@ export default function HomeScreen() {
                     </ScrollView>
                 </View>
 
-                <View style={[styles.section, { marginBottom: 24 }]}>
-                    <View style={styles.sectionHeader}>
-                        <Text style={styles.sectionTitle}>▶️ {t('continueWhereYouLeft')}</Text>
-                    </View>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.coursesContainer}>
-                        {courses.filter(c => {
-                            const p = getCourseProgress(c.id);
-                            return p > 0 && p < 100;
-                        }).slice(0, 3).map(renderCourseCard)}
-                        {courses.filter(c => {
-                            const p = getCourseProgress(c.id);
-                            return p > 0 && p < 100;
-                        }).length === 0 && (
-                                <View style={styles.emptyState}>
-                                    <Text style={styles.emptyEmoji}>🚀</Text>
-                                    <Text style={styles.emptyText}>{t('startCourseToTrack')}</Text>
-                                </View>
-                            )}
-                    </ScrollView>
-                </View>
+                {courses.filter(c => {
+                    const p = getCourseProgress(c.id);
+                    return p > 0 && p < 100;
+                }).length > 0 && (
+                        <View style={[styles.section, { marginBottom: 24 }]}>
+                            <View style={styles.sectionHeader}>
+                                <Text style={styles.sectionTitle}>▶️ {t('continueWhereYouLeft')}</Text>
+                            </View>
+                            <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.coursesContainer}>
+                                {courses.filter(c => {
+                                    const p = getCourseProgress(c.id);
+                                    return p > 0 && p < 100;
+                                }).slice(0, 3).map(renderCourseCard)}
+                            </ScrollView>
+                        </View>
+                    )}
             </ScrollView>
         </SafeAreaView>
     );
