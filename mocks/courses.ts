@@ -71,9 +71,9 @@ export const lessons: Lesson[] = [
 
 
     // Linear Algebra
-    { id: 'math-2-1', courseId: 'math-2', title: 'lesson-math-2-1-title', description: 'lesson-math-2-1-desc', videoId: 'dQw4w9WgXcQ', duration: '14:00', order: 1 },
-    { id: 'math-2-2', courseId: 'math-2', title: 'lesson-math-2-2-title', description: 'lesson-math-2-2-desc', videoId: 'dQw4w9WgXcQ', duration: '16:30', order: 2 },
-    { id: 'math-2-3', courseId: 'math-2', title: 'lesson-math-2-3-title', description: 'lesson-math-2-3-desc', videoId: 'dQw4w9WgXcQ', duration: '19:15', order: 3 },
+    { id: 'math-2-1', courseId: 'math-2', title: 'lesson-math-2-1-title', description: 'lesson-math-2-1-desc', videoId: 'cJslkj9_wyg', duration: '14:00', order: 1 },
+    { id: 'math-2-2', courseId: 'math-2', title: 'lesson-math-2-2-title', description: 'lesson-math-2-2-desc', videoId: 'cJslkj9_wyg', duration: '16:30', order: 2 },
+    { id: 'math-2-3', courseId: 'math-2', title: 'lesson-math-2-3-title', description: 'lesson-math-2-3-desc', videoId: 'cJslkj9_wyg', duration: '19:15', order: 3 },
 
     // Classical Mechanics
     { id: 'physics-1-1', courseId: 'physics-1', title: 'lesson-physics-1-1-title', description: 'lesson-physics-1-1-desc', videoId: 'eVgokiqERI8', duration: '11:45', order: 1 },
