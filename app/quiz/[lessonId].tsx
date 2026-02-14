@@ -164,13 +164,13 @@ export default function QuizScreen() {
                     <View style={[styles.resultCard, isCorrect ? styles.resultCorrect : styles.resultWrong]}>
                         {isCorrect ? (
                             <>
-                                <CheckCircle2 color={colors.success} size={32} />
+                                <Text style={styles.resultEmoji}>🎉</Text>
                                 <Text style={styles.resultTitle}>{t('correct')}</Text>
                                 <Text style={styles.resultText}>{t('greatJob')}</Text>
                             </>
                         ) : (
                             <>
-                                <XCircle color={colors.error} size={32} />
+                                <Text style={styles.resultEmoji}>💪</Text>
                                 <Text style={[styles.resultTitle, { color: colors.error }]}>{t('notQuite')}</Text>
                                 <Text style={styles.resultText}>{t('dontWorry')}</Text>
                             </>
@@ -357,7 +357,11 @@ const makeStyles = (colors: any) => StyleSheet.create({
         fontSize: 20,
         fontWeight: '700',
         color: colors.success,
-        marginTop: 8,
+        marginTop: 4,
+    },
+    resultEmoji: {
+        fontSize: 40,
+        marginBottom: 4,
     },
     resultText: {
         fontSize: 14,

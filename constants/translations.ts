@@ -27,6 +27,8 @@ export const translations = {
         continueWhereYouLeft: 'Продолжить с того места',
         startCourseToTrack: 'Начните курс, чтобы отслеживать прогресс!',
         coursesCount: 'курсов',
+        keepItUp: 'Так держать!',
+        everyLessonMatters: 'Каждый урок — шаг к знаниям!',
 
         // Categories
         mathematics: 'Математика',
@@ -349,6 +351,8 @@ export const translations = {
         continueWhereYouLeft: 'Тоқтаған жерден жалғастыру',
         startCourseToTrack: 'Прогрессті бақылау үшін курсты бастаңыз!',
         coursesCount: 'курс',
+        keepItUp: 'Жарайсың!',
+        everyLessonMatters: 'Әр сабақ — білімге жақындатады!',
 
         // Categories
         mathematics: 'Математика',

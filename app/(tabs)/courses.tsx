@@ -12,6 +12,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Search, Filter } from 'lucide-react-native';
 import Colors from '@/constants/colors';
+
+const categoryEmoji: Record<string, string> = {
+    mathematics: '🔢',
+    physics: '⚡',
+    languages: '🌍',
+};
 import { courses } from '@/mocks/courses';
 import { useProgress } from '@/contexts/ProgressContext';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -71,10 +77,12 @@ export default function CoursesScreen() {
                 <Image source={{ uri: course.thumbnailUrl }} style={styles.courseThumbnail} />
                 <View style={styles.courseContent}>
                     <View style={styles.courseHeader}>
-                        <View style={[styles.levelBadge, { backgroundColor: Colors.levels[course.level] }]}>
-                            <Text style={styles.levelText}>{t(course.level as 'beginner' | 'intermediate' | 'advanced')}</Text>
+                        <View style={[styles.levelBadge, { backgroundColor: Colors.levels[course.level] + '20' }]}>
+                            <Text style={[styles.levelText, { color: Colors.levels[course.level] }]}>
+                                {t(course.level as 'beginner' | 'intermediate' | 'advanced')}
+                            </Text>
                         </View>
-                        <View style={[styles.categoryDot, { backgroundColor: Colors.categories[course.category] }]} />
+                        <Text style={styles.categoryEmojiSmall}>{categoryEmoji[course.category] || '📖'}</Text>
                     </View>
                     <Text style={styles.courseTitle} numberOfLines={2}>{t(course.title as any)}</Text>
                     <Text style={styles.courseDescription} numberOfLines={2}>{t(course.description as any)}</Text>
@@ -99,7 +107,7 @@ export default function CoursesScreen() {
     return (
         <SafeAreaView style={styles.container} edges={['top']}>
             <View style={styles.header}>
-                <Text style={styles.title}>{t('courses')}</Text>
+                <Text style={styles.title}>📚 {t('courses')}</Text>
                 <Text style={styles.subtitle}>{filteredCourses.length} {t('coursesAvailable')}</Text>
             </View>
 
@@ -230,14 +238,14 @@ const makeStyles = (colors: any) => StyleSheet.create({
     courseItem: {
         flexDirection: 'row',
         backgroundColor: colors.card,
-        borderRadius: 16,
+        borderRadius: 20,
         overflow: 'hidden',
         marginBottom: 16,
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.06,
-        shadowRadius: 8,
-        elevation: 2,
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.08,
+        shadowRadius: 12,
+        elevation: 3,
     },
     courseThumbnail: {
         width: 110,
@@ -256,21 +264,19 @@ const makeStyles = (colors: any) => StyleSheet.create({
         marginBottom: 8,
     },
     levelBadge: {
-        paddingHorizontal: 8,
-        paddingVertical: 3,
-        borderRadius: 6,
+        paddingHorizontal: 10,
+        paddingVertical: 4,
+        borderRadius: 8,
     },
     levelText: {
         fontSize: 10,
         fontWeight: '600',
-        color: '#FFF',
         textTransform: 'capitalize',
     },
-    categoryDot: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
+    categoryEmojiSmall: {
+        fontSize: 18,
     },
+
     courseTitle: {
         fontSize: 15,
         fontWeight: '600',
@@ -304,9 +310,9 @@ const makeStyles = (colors: any) => StyleSheet.create({
     },
     progressBarBg: {
         flex: 1,
-        height: 4,
+        height: 6,
         backgroundColor: colors.border,
-        borderRadius: 2,
+        borderRadius: 3,
         overflow: 'hidden',
     },
     progressBarFill: {
