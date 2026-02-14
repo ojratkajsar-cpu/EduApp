@@ -4,11 +4,14 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useMemo } from 'react';
 import { UserProgress, LessonProgress } from '@/types';
 import { getLessonsByCourse, courses, lessons } from '@/mocks/courses';
+import { supabase } from '@/lib/supabase';
+import { useAuth } from '@/contexts/AuthContext';
 
 const PROGRESS_STORAGE_KEY = 'user_progress';
 
 export const [ProgressProvider, useProgress] = createContextHook(() => {
     const queryClient = useQueryClient();
+    const { user } = useAuth();
 
     const progressQuery = useQuery({
         queryKey: ['progress'],
@@ -63,7 +66,28 @@ export const [ProgressProvider, useProgress] = createContextHook(() => {
         }
 
         saveMutation.mutate(currentProgress);
-    }, [progress, saveMutation]);
+
+        // Синхронизируем прогресс в Supabase, чтобы учителя/родители могли его видеть
+        if (user) {
+            supabase
+                .from('user_progress')
+                .upsert({
+                    user_id: user.id,
+                    course_id: courseId,
+                    lesson_id: lessonId,
+                    completed: true,
+                    quiz_passed: quizPassed,
+                    completed_at: new Date().toISOString(),
+                }, {
+                    onConflict: 'user_id,course_id,lesson_id',
+                })
+                .then(({ error }) => {
+                    if (error) {
+                        console.error('Ошибка сохранения прогресса в Supabase:', error);
+                    }
+                });
+        }
+    }, [progress, saveMutation, user]);
 
     const getCourseProgress = useCallback((courseId: string): number => {
         const courseProgress = progress.find(p => p.courseId === courseId);
