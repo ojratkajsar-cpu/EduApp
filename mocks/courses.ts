@@ -82,9 +82,9 @@ export const lessons: Lesson[] = [
 
 
     // Quantum Physics
-    { id: 'physics-2-1', courseId: 'physics-2', title: 'lesson-physics-2-1-title', description: 'lesson-physics-2-1-desc', videoId: 'dQw4w9WgXcQ', duration: '18:00', order: 1 },
-    { id: 'physics-2-2', courseId: 'physics-2', title: 'lesson-physics-2-2-title', description: 'lesson-physics-2-2-desc', videoId: 'dQw4w9WgXcQ', duration: '16:45', order: 2 },
-    { id: 'physics-2-3', courseId: 'physics-2', title: 'lesson-physics-2-3-title', description: 'lesson-physics-2-3-desc', videoId: 'dQw4w9WgXcQ', duration: '22:00', order: 3 },
+    { id: 'physics-2-1', courseId: 'physics-2', title: 'lesson-physics-2-1-title', description: 'lesson-physics-2-1-desc', videoId: 'sc7vNNqeV1E', duration: '18:00', order: 1 },
+    { id: 'physics-2-2', courseId: 'physics-2', title: 'lesson-physics-2-2-title', description: 'lesson-physics-2-2-desc', videoId: 'sc7vNNqeV1E', duration: '16:45', order: 2 },
+    { id: 'physics-2-3', courseId: 'physics-2', title: 'lesson-physics-2-3-title', description: 'lesson-physics-2-3-desc', videoId: 'sc7vNNqeV1E', duration: '22:00', order: 3 },
 
     // English for Beginners
     { id: 'lang-1-1', courseId: 'lang-1', title: 'lesson-lang-1-1-title', description: 'lesson-lang-1-1-desc', videoId: 'ATaNvqPSZEI', duration: '10:00', order: 1 },
