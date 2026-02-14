@@ -59,6 +59,7 @@ export const translations = {
         courseCompleted: 'Курс завершен!',
         finishedAllLessons: 'Вы прошли все уроки этого курса',
         backToCourse: 'Вернуться к курсу',
+        backToHome: 'На главную',
 
         // Quiz
         quiz: 'Тест',
@@ -383,6 +384,7 @@ export const translations = {
         courseCompleted: 'Курс аяқталды!',
         finishedAllLessons: 'Сіз осы курстың барлық сабақтарын аяқтадыңыз',
         backToCourse: 'Курсқа оралу',
+        backToHome: 'Басты бетке',
 
         // Quiz
         quiz: 'Тест',

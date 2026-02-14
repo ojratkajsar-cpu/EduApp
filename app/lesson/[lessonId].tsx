@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { WebView } from 'react-native-webview';
-import { Play, CheckCircle, ArrowRight, BookOpen } from 'lucide-react-native';
+import { Play, CheckCircle, ArrowRight, BookOpen, Home } from 'lucide-react-native';
 import Colors from '@/constants/colors';
 import { lessons, courses, getQuizByLesson } from '@/mocks/courses';
 import { useProgress } from '@/contexts/ProgressContext';
@@ -150,6 +150,15 @@ export default function LessonScreen() {
                             </View>
                         )}
                     </View>
+
+                    <TouchableOpacity
+                        style={styles.homeButton}
+                        onPress={() => router.push('/(tabs)')}
+                        activeOpacity={0.8}
+                    >
+                        <Home color={colors.tint} size={18} />
+                        <Text style={styles.homeButtonText}>{t('backToHome') || 'На главную'}</Text>
+                    </TouchableOpacity>
 
                     <View style={styles.bottomPadding} />
                 </ScrollView>
@@ -334,5 +343,22 @@ const makeStyles = (colors: any) => StyleSheet.create({
     },
     bottomPadding: {
         height: 30,
+    },
+    homeButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 8,
+        marginTop: 16,
+        paddingVertical: 14,
+        borderRadius: 14,
+        borderWidth: 2,
+        borderColor: colors.tint,
+        backgroundColor: 'transparent',
+    },
+    homeButtonText: {
+        fontSize: 15,
+        fontWeight: '600',
+        color: colors.tint,
     },
 });
