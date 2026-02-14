@@ -13,26 +13,30 @@ export const [ProgressProvider, useProgress] = createContextHook(() => {
     const queryClient = useQueryClient();
     const { user } = useAuth();
 
+    // Ключ хранения привязан к пользователю
+    const storageKey = user ? `${PROGRESS_STORAGE_KEY}_${user.id}` : PROGRESS_STORAGE_KEY;
+
     const progressQuery = useQuery({
-        queryKey: ['progress'],
+        queryKey: ['progress', user?.id ?? 'anonymous'],
         queryFn: async (): Promise<UserProgress[]> => {
             try {
-                const stored = await AsyncStorage.getItem(PROGRESS_STORAGE_KEY);
+                const stored = await AsyncStorage.getItem(storageKey);
                 return stored ? JSON.parse(stored) : [];
             } catch (error) {
                 console.log('Error loading progress:', error);
                 return [];
             }
         },
+        enabled: !!user,
     });
 
     const saveMutation = useMutation({
         mutationFn: async (progress: UserProgress[]) => {
-            await AsyncStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(progress));
+            await AsyncStorage.setItem(storageKey, JSON.stringify(progress));
             return progress;
         },
         onSuccess: (data) => {
-            queryClient.setQueryData(['progress'], data);
+            queryClient.setQueryData(['progress', user?.id ?? 'anonymous'], data);
         },
     });
 
