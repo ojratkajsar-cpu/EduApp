@@ -25,7 +25,7 @@
             "package": "app.rork.eduapp_mvp"
         },
         "web": {
-            "favicon": "./assets/images/favicon.png",
+            "favicon": "./assets/images/favicon.ico",
             "output": "single"
         },
         "plugins": [
