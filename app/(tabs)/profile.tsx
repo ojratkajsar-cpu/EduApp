@@ -56,23 +56,14 @@ export default function ProfileScreen() {
         if (id === 'settings') {
             setShowSettingsModal(true);
         } else if (id === 'help') {
+            const message = language === 'kk' 
+                ? 'Бізбен байланысыңыз:\n\nEmail: ojratkajsar@gmail.com\nТелефон: 87711767867' 
+                : 'Свяжитесь с нами:\n\nEmail: ojratkajsar@gmail.com\nТелефон: 87711767867';
+            
             Alert.alert(
                 t('helpSupport'),
-                language === 'kk' ? 'Бізбен байланысыңыз:' : 'Свяжитесь с нами:',
-                [
-                    {
-                        text: 'Email',
-                        onPress: () => Linking.openURL('mailto:ojratkajsar@gmail.com')
-                    },
-                    {
-                        text: 'Телефон',
-                        onPress: () => Linking.openURL('tel:87711767867')
-                    },
-                    {
-                        text: t('back') || 'Отмена',
-                        style: 'cancel'
-                    }
-                ]
+                message,
+                [{ text: 'OK', style: 'cancel' }]
             );
         } else if (id === 'logout') {
             signOut();
