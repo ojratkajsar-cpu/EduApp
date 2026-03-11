@@ -7,6 +7,8 @@ import {
     TouchableOpacity,
     Image,
     Modal,
+    Linking,
+    Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { User, Award, BookOpen, Clock, ChevronRight, Settings, HelpCircle, LogOut, Globe, Check, Moon, Sun, X } from 'lucide-react-native';
@@ -39,7 +41,7 @@ export default function ProfileScreen() {
         setShowLanguageModal(false);
     };
 
-    const mainMenuItems = [
+    const mainMenuItems: Array<{ id: string; icon: any; label: string; color: string; value?: string }> = [
         { id: 'settings', icon: Settings, label: t('settings'), color: colors.textSecondary },
         { id: 'help', icon: HelpCircle, label: t('helpSupport'), color: colors.textSecondary },
         { id: 'logout', icon: LogOut, label: t('logOut'), color: colors.error },
@@ -53,6 +55,25 @@ export default function ProfileScreen() {
     const handleMenuPress = (id: string) => {
         if (id === 'settings') {
             setShowSettingsModal(true);
+        } else if (id === 'help') {
+            Alert.alert(
+                t('helpSupport'),
+                language === 'kk' ? 'Бізбен байланысыңыз:' : 'Свяжитесь с нами:',
+                [
+                    {
+                        text: 'Email',
+                        onPress: () => Linking.openURL('mailto:ojratkajsar@gmail.com')
+                    },
+                    {
+                        text: 'Телефон',
+                        onPress: () => Linking.openURL('tel:87711767867')
+                    },
+                    {
+                        text: t('back') || 'Отмена',
+                        style: 'cancel'
+                    }
+                ]
+            );
         } else if (id === 'logout') {
             signOut();
         }
