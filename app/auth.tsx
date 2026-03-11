@@ -163,6 +163,7 @@ export default function AuthScreen() {
                                 value={fullName}
                                 onChangeText={setFullName}
                                 autoCapitalize="words"
+                                returnKeyType="next"
                             />
                         </View>
                     )}
@@ -177,6 +178,7 @@ export default function AuthScreen() {
                             onChangeText={setEmail}
                             keyboardType="email-address"
                             autoCapitalize="none"
+                            returnKeyType="next"
                         />
                     </View>
 
@@ -189,6 +191,8 @@ export default function AuthScreen() {
                             value={password}
                             onChangeText={setPassword}
                             secureTextEntry={!showPassword}
+                            returnKeyType="go"
+                            onSubmitEditing={handleSubmit}
                         />
                         <TouchableOpacity
                             onPress={() => setShowPassword(!showPassword)}
