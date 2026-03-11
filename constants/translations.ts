@@ -74,7 +74,7 @@ export const translations = {
         continue: 'Продолжить',
 
         // Profile
-        student: 'Студент',
+        student: 'Учащийся',
         overallProgress: 'Общий прогресс',
         coursesDone: 'Курсов',
         lessonsDone: 'Уроков',
@@ -399,7 +399,7 @@ export const translations = {
         continue: 'Жалғастыру',
 
         // Profile
-        student: 'Студент',
+        student: 'Оқушы',
         overallProgress: 'Жалпы прогресс',
         coursesDone: 'Курстар',
         lessonsDone: 'Сабақтар',

@@ -22,7 +22,6 @@ type Role = 'student' | 'teacher' | 'parent';
 const ROLES: { id: Role; icon: any; labelKey: string }[] = [
     { id: 'student', icon: GraduationCap, labelKey: 'student' },
     { id: 'teacher', icon: School, labelKey: 'teacher' },
-    { id: 'parent', icon: Users, labelKey: 'parent' },
 ];
 
 export default function AuthScreen() {
